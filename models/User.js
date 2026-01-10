@@ -46,7 +46,7 @@ UserSchema.methods.getSignedToken = function () {
   });
 };
 
-UserSchemea.methods.getResetPasswordToken = function () {
+UserSchema.methods.getResetPasswordToken = function () {
   const resetToken = crypto.randomBytes(20).toString("hex");
 
   this.resetpasswordToken = crypto
