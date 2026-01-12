@@ -68,6 +68,7 @@ exports.forgotpassword = async (req, res, next) => {
     console.log('Reset Token:', resetToken);
     const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
 
+    console.log('Reset URL:', resetUrl);
     const message = `
     <h1> You have requested a password reset </h1>
     <p> Please go to this link to reset your password </p>
@@ -82,8 +83,8 @@ exports.forgotpassword = async (req, res, next) => {
 
       res.status(200).json({ success: true, data: "Email Sent"});
     } catch (error) {
-      user.resetpasswordToken = undefined;
-      user.resetpasswordExpire = undefined;
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
 
       await user.save();
       
@@ -112,8 +113,8 @@ exports.resetpassword = async (req, res, next) => {
       }
 
       user.password = req.body.password;
-      user.resetpasswordToken = undefined;
-      user.resetpasswordExpire = undefined;
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
 
       await user.save();
 
